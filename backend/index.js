@@ -19,7 +19,7 @@ app.get('/pokemons', function(req, res){
 
 	connection.connect();
 
-	var query = "SELECT * FROM pokemon";
+	var query = "SELECT id, nombre, altura, categoria, peso, habilidad, tipo, url_imagen FROM pokemon";
 
 	connection.query(query, function(error, results, fields){
 		if(error) throw error;
@@ -40,7 +40,7 @@ app.get('/pokemons/:id', function(req, res){
 
 	connection.connect();
 
-	var query = "SELECT * FROM pokemon WHERE id = ?;";
+	var query = "SELECT id, nombre, altura, categoria, peso, habilidad, tipo, url_imagen FROM pokemon WHERE id = ?;";
 	var values = [req.params.id];
 
 	connection.query(query, values, function(error, results, fields){
@@ -64,8 +64,8 @@ app.post('/pokemons', function(req, res){
 
 	connection.connect();
 
-	var query = "INSERT INTO pokemon (nombre, altura, categoria, peso, tipo, url_imagen)" +
-		     "VALUES (?, ?, ?, ?, ?, ?)";
+	var query = "INSERT INTO pokemon (nombre, altura, categoria, peso, tipo, url_imagen, modified_date)" +
+		     "VALUES (?, ?, ?, ?, ?, ?, NOW())";
 	var values = [req.body.nombre, req.body.altura, req.body.categoria, req.body.peso, req.body.tipo, req.body.url_imagen];
 
 	connection.query(query, values, function(error, results, fields){
@@ -89,12 +89,43 @@ app.put('/pokemons/:id', function(req, res){
 
 	connection.connect();
 
-	var query = "UPDATE pokemon SET ";
+	var query = "UPDATE pokemon SET modified_date = NOW()";
 	var values = [];
 
 	if(req.body.nombre){
-		query += " "
+		query += ", fullname = ? ";
+		values.push(req.body.nombre);
 	}
+	if(req.body.altura){
+		query += ", altura = ? ";
+		values.push(req.body.altura);
+	}
+	if(req.body.categoria){
+		query += ", categoria = ? ";
+		values.push(req.body.categoria);
+	}
+	if(req.body.peso){
+		query += ", peso = ? ";
+		values.push(req.body.peso);
+	}
+	if(req.body.tipo){
+		query += ", tipo = ? ";
+		values.push(req.body.tipo);
+	}
+	if(req.body.url_imagen){
+		query += ", url_imagen = ?";
+		values.push(req.body.url_imagen);
+	}
+
+	query += " WHERE id = ?;";
+	values.push(req.params.id);
+
+	connection.query(query, values, function(error, results, fields){
+		if(error) throw error;
+
+		res.send(results);
+		connection.end();
+	});
 });
 
 
@@ -118,5 +149,5 @@ app.delete('/pokemons/:id', function(req, res){
 
 		res.send(results);
 		connection.end();
-	})
+	});
 });
