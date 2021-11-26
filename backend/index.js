@@ -151,3 +151,7 @@ app.delete('/pokemons/:id', function(req, res){
 		connection.end();
 	});
 });
+
+app.listen(3000, function(){
+	console.log("Server started");
+})

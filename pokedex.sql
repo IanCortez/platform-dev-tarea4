@@ -1,19 +1,19 @@
 -- Database
 CREATE DATABASE pokedex;
-USE DATABASE pokedex;
+USE pokedex;
 
 
 -- Table
 CREATE TABLE pokemon (
-	int id NOT NULL AUTO_INCREMENT,
-	varchar(255) nombre NOT NULL,
-	float altura NOT NULL,
-	varchar(30) categoria NOT NULL,
-	float peso NOT NULL,
-	varchar(255) habilidad NOT NULL,
-	varchar(255) tipo NOT NULL,
-	text url_imagen NOT NULL,
-	datetime modified_date,
+	id int NOT NULL,
+	nombre varchar(255) NOT NULL,
+	altura float NOT NULL,
+	categoria varchar(30) NOT NULL,
+	peso float NOT NULL,
+	habilidad varchar(255) NOT NULL,
+	tipo varchar(255) NOT NULL,
+	url_imagen text NOT NULL,
+	modified_date datetime,
 	PRIMARY KEY (id)
 );
 
