@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="pokemons"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title style="text-align: center;">Agregar pokemon</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Agregar pokemon</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        
+        <form [formGroup]="pokemonForm" (ngSubmit)="addPokemon(pokemonForm.value)">
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input type="text" formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Altura</ion-label>
+            <ion-input type="number" formControlName="altura"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Categoria</ion-label>
+            <ion-input type="text" formControlName="categoria"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Peso</ion-label>
+            <ion-input type="number" formControlName="peso"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Tipo</ion-label>
+            <ion-input type="text" formControlName="tipo"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Habilidad</ion-label>
+            <ion-input type="text" formControlName="habilidad"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Url de Imagen</ion-label>
+            <ion-input type="text" formControlName="url_imagen"></ion-input>
+          </ion-item>
+
+          <ion-row>
+            <ion-col>
+              <ion-button expand="full" type="submit">Agregar</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+        
+      </ion-col>
+    </ion-row>  
+  </ion-grid>
+</ion-content>
