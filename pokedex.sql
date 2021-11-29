@@ -5,7 +5,7 @@ USE pokedex;
 
 -- Table
 CREATE TABLE pokemon (
-	id int NOT NULL,
+	id int NOT NULL AUTO_INCREMENT,
 	nombre varchar(255) NOT NULL,
 	altura float NOT NULL,
 	categoria varchar(30) NOT NULL,
