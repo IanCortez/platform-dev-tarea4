@@ -64,11 +64,12 @@ app.post('/pokemons', function(req, res){
 
 	connection.connect();
 
-	var query = "INSERT INTO pokemon (nombre, altura, categoria, peso, tipo, url_imagen, modified_date)" +
-		     "VALUES (?, ?, ?, ?, ?, ?, NOW())";
-	var values = [req.body.nombre, req.body.altura, req.body.categoria, req.body.peso, req.body.tipo, req.body.url_imagen];
+	var query = "INSERT INTO pokemon (nombre, altura, categoria, peso, tipo, habilidad, url_imagen, modified_date) " +
+		     "VALUES (?, ?, ?, ?, ?, ?, ?, NOW());";
+	var vals = [req.body.nombre, req.body.altura, req.body.categoria, req.body.peso, req.body.tipo, req.body.habilidad,
+		 req.body.url_imagen];
 
-	connection.query(query, values, function(error, results, fields){
+	connection.query(query, vals, function(error, results, fields){
 		if(error) throw error;
 
 		res.send(results);
