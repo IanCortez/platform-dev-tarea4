@@ -109,6 +109,10 @@ app.put('/pokemons/:id', function(req, res){
 		query += ", peso = ? ";
 		values.push(req.body.peso);
 	}
+	if(req.body.habilidad){
+		query += ", habilidad = ?";
+		values.push(req.body.habilidad);
+	}
 	if(req.body.tipo){
 		query += ", tipo = ? ";
 		values.push(req.body.tipo);
