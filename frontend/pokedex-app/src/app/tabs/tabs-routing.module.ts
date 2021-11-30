@@ -13,21 +13,21 @@ const routes: Routes = [
         loadChildren: () => import('../pokemon-tab/pokemon-tab.module').then(m => m.PokemonTabPageModule)
       },
       {
-        path: 'home',
+        path: '',
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
       },
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-      }
+      // {
+      //   path: '',
+      //   redirectTo: 'home',
+      //   pathMatch: 'full'
+      // }
     ]
   },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: '',
+  //   redirectTo: '/',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({
